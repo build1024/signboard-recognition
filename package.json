@@ -6,14 +6,13 @@
   "main": "src/index.js",
   "homepage": "https://dev.every-little.com/tfjs-yolov5-example/",
   "dependencies": {
-    "@tensorflow/tfjs": "3.9.0",
+    "@tensorflow/tfjs": "3.14.0",
     "gh-pages": "^3.2.3",
-    "react": "16.5.2",
-    "react-dom": "16.5.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "react-magic-dropzone": "1.0.1",
-    "react-scripts": "2.0.3"
+    "react-scripts": "^5.0.0"
   },
-  "devDependencies": {},
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
