@@ -26,7 +26,8 @@ class App extends React.Component {
   }
 
   onDrop = (accepted, rejected, links) => {
-    this.setState({ preview: accepted[0].preview || links[0] });
+    accepted = accepted.map((v) => v.preview);
+    this.setState({ preview: accepted[0] || links[0] });
   };
 
   cropToCanvas = (image, canvas, ctx) => {
@@ -140,6 +141,7 @@ class App extends React.Component {
                 onLoad={this.onImageChange}
                 className="Dropzone-img"
                 src={this.state.preview}
+                crossOrigin="anonymous"
               />
             ) : (
               "Choose or drop a file."
