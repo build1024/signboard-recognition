@@ -153,19 +153,19 @@ class App extends React.Component {
           >
             {this.state.preview ? (
               <img
-                alt="upload preview"
+                alt="画像を表示します..."
                 onLoad={this.onImageChange}
                 className="Dropzone-img"
                 src={this.state.preview}
                 crossOrigin="anonymous"
               />
             ) : (
-              "Choose or drop a file."
+              "ここをクリックしてファイルを選択するか、ファイルをドロップしてください"
             )}
             <canvas id="canvas" width="640" height="640" />
           </MagicDropzone>
         ) : (
-          <div className="Dropzone">Loading model...</div>
+          <div className="Dropzone">モデルを読み込んでいます...</div>
         )}
       </div>
     );
