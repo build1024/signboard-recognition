@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import MagicDropzone from "react-magic-dropzone";
+import "spinkit/spinkit.min.css";
 
 import "./styles.css";
 const tf = require('@tensorflow/tfjs');
@@ -14,20 +15,24 @@ class App extends React.Component {
   state = {
     model: null,
     preview: "",
-    predictions: []
+    predictions: [],
+    loading: true
   };
 
   componentDidMount() {
     tf.loadGraphModel(weights).then(model => {
       this.setState({
-        model: model
+        model: model,
+        loading: false
       });
     });
   }
 
   onDrop = (accepted, rejected, links) => {
     accepted = accepted.map((v) => v.preview);
-    this.setState({ preview: accepted[0] || links[0] });
+    if (accepted[0] || links[0]) {
+      this.setState({ preview: accepted[0] || links[0], loading: true });
+    }
   };
 
   cropToCanvas = (image, canvas, ctx) => {
@@ -122,12 +127,23 @@ class App extends React.Component {
         ctx.fillText(klass + ":" + score, label_left[i], label_top[i]);
 
       }
+      this.setState({ loading: false });
     });
   };
 
   render() {
     return (
       <div className="Dropzone-page">
+        <div id="layer" className={this.state.loading ? "loading" : ""}>
+          <div className="sk-chase">
+            <div className="sk-chase-dot"></div>
+            <div className="sk-chase-dot"></div>
+            <div className="sk-chase-dot"></div>
+            <div className="sk-chase-dot"></div>
+            <div className="sk-chase-dot"></div>
+            <div className="sk-chase-dot"></div>
+          </div>
+        </div>
         {this.state.model ? (
           <MagicDropzone
             className="Dropzone"
