@@ -1,13 +1,13 @@
 {
-  "main.css": "/tfjs-yolov5-example/static/css/main.b7d63923.chunk.css",
-  "main.js": "/tfjs-yolov5-example/static/js/main.558ae35a.chunk.js",
-  "main.js.map": "/tfjs-yolov5-example/static/js/main.558ae35a.chunk.js.map",
-  "static/js/1.624c471e.chunk.js": "/tfjs-yolov5-example/static/js/1.624c471e.chunk.js",
-  "static/js/1.624c471e.chunk.js.map": "/tfjs-yolov5-example/static/js/1.624c471e.chunk.js.map",
-  "runtime~main.js": "/tfjs-yolov5-example/static/js/runtime~main.d686f760.js",
-  "runtime~main.js.map": "/tfjs-yolov5-example/static/js/runtime~main.d686f760.js.map",
-  "static/css/main.b7d63923.chunk.css.map": "/tfjs-yolov5-example/static/css/main.b7d63923.chunk.css.map",
-  "index.html": "/tfjs-yolov5-example/index.html",
-  "precache-manifest.83b587328bce30936bd1ec8c6d10e678.js": "/tfjs-yolov5-example/precache-manifest.83b587328bce30936bd1ec8c6d10e678.js",
-  "service-worker.js": "/tfjs-yolov5-example/service-worker.js"
+  "files": {
+    "main.css": "/tfjs-yolov5-example/static/css/main.e9ee4296.css",
+    "main.js": "/tfjs-yolov5-example/static/js/main.aaa5a27e.js",
+    "index.html": "/tfjs-yolov5-example/index.html",
+    "main.e9ee4296.css.map": "/tfjs-yolov5-example/static/css/main.e9ee4296.css.map",
+    "main.aaa5a27e.js.map": "/tfjs-yolov5-example/static/js/main.aaa5a27e.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e9ee4296.css",
+    "static/js/main.aaa5a27e.js"
+  ]
 }
