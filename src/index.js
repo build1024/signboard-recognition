@@ -7,15 +7,8 @@ const tf = require('@tensorflow/tfjs');
 
 const weights = './web_model/model.json';
 
-const names = ['person', 'bicycle', 'car', 'motorcycle', 'airplane', 'bus', 'train', 'truck', 'boat', 'traffic light',
-               'fire hydrant', 'stop sign', 'parking meter', 'bench', 'bird', 'cat', 'dog', 'horse', 'sheep', 'cow',
-               'elephant', 'bear', 'zebra', 'giraffe', 'backpack', 'umbrella', 'handbag', 'tie', 'suitcase', 'frisbee',
-               'skis', 'snowboard', 'sports ball', 'kite', 'baseball bat', 'baseball glove', 'skateboard', 'surfboard',
-               'tennis racket', 'bottle', 'wine glass', 'cup', 'fork', 'knife', 'spoon', 'bowl', 'banana', 'apple',
-               'sandwich', 'orange', 'broccoli', 'carrot', 'hot dog', 'pizza', 'donut', 'cake', 'chair', 'couch',
-               'potted plant', 'bed', 'dining table', 'toilet', 'tv', 'laptop', 'mouse', 'remote', 'keyboard', 'cell phone',
-               'microwave', 'oven', 'toaster', 'sink', 'refrigerator', 'book', 'clock', 'vase', 'scissors', 'teddy bear',
-               'hair drier', 'toothbrush']
+const names = ['marufuku', 'christ'];
+const fillcolors = ['#FF3838', '#AF9510'];
 
 class App extends React.Component {
   state = {
@@ -74,7 +67,7 @@ class App extends React.Component {
     });
     this.state.model.executeAsync(input).then(res => {
       // Font options.
-      const font = "16px sans-serif";
+      const font = "20px sans-serif";
       ctx.font = font;
       ctx.textBaseline = "top";
 
@@ -86,8 +79,12 @@ class App extends React.Component {
 
       tf.dispose(res)
 
+      let label_left = Array(valid_detections_data);
+      let label_top  = Array(valid_detections_data);
+
       var i;
       for (i = 0; i < valid_detections_data; ++i){
+        if (scores_data[i] < 0.5) continue;
         let [x1, y1, x2, y2] = boxes_data.slice(i * 4, (i + 1) * 4);
         x1 *= c.width;
         x2 *= c.width;
@@ -99,18 +96,20 @@ class App extends React.Component {
         const score = scores_data[i].toFixed(2);
 
         // Draw the bounding box.
-        ctx.strokeStyle = "#00FFFF";
+        ctx.strokeStyle = fillcolors[classes_data[i]];
         ctx.lineWidth = 4;
         ctx.strokeRect(x1, y1, width, height);
 
         // Draw the label background.
-        ctx.fillStyle = "#00FFFF";
+        ctx.fillStyle = fillcolors[classes_data[i]];
         const textWidth = ctx.measureText(klass + ":" + score).width;
         const textHeight = parseInt(font, 10); // base 10
-        ctx.fillRect(x1, y1, textWidth + 4, textHeight + 4);
-
+        label_left[i] = (x1 + textWidth < c.width ? x1 : c.width - textWidth);
+        label_top[i] = (y1 - textHeight >= 0 ? y1 - textHeight : y1);
+        ctx.fillRect(label_left[i] - 2, label_top[i] - 2, textWidth + 4, textHeight + 4);
       }
       for (i = 0; i < valid_detections_data; ++i){
+        if (scores_data[i] < 0.5) continue;
         let [x1, y1, , ] = boxes_data.slice(i * 4, (i + 1) * 4);
         x1 *= c.width;
         y1 *= c.height;
@@ -118,8 +117,8 @@ class App extends React.Component {
         const score = scores_data[i].toFixed(2);
 
         // Draw the text last to ensure it's on top.
-        ctx.fillStyle = "#000000";
-        ctx.fillText(klass + ":" + score, x1, y1);
+        ctx.fillStyle = "#ffffff";
+        ctx.fillText(klass + ":" + score, label_left[i], label_top[i]);
 
       }
     });
