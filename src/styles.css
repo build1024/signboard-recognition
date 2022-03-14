@@ -1,5 +1,4 @@
 body {
-  color: rgba(64, 64, 64, 0.65);
   font: 500 1em Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizelegibility;
@@ -42,6 +41,7 @@ body {
 }
 
 .Dropzone-page {
+  color: rgba(64, 64, 64, 0.65);
   margin: 40px;
   display: flex;
   align-items: center;

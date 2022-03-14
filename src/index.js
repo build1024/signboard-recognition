@@ -133,40 +133,45 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="Dropzone-page">
-        <div id="layer" className={this.state.loading ? "loading" : ""}>
-          <div className="sk-chase">
-            <div className="sk-chase-dot"></div>
-            <div className="sk-chase-dot"></div>
-            <div className="sk-chase-dot"></div>
-            <div className="sk-chase-dot"></div>
-            <div className="sk-chase-dot"></div>
-            <div className="sk-chase-dot"></div>
+      <div>
+        <h1>看板認識のデモ</h1>
+        <p>選択された画像に写っているマルフク看板とキリスト看板を認識します。</p>
+        <div className="Dropzone-page">
+          <div id="layer" className={this.state.loading ? "loading" : ""}>
+            <div className="sk-chase">
+              <div className="sk-chase-dot"></div>
+              <div className="sk-chase-dot"></div>
+              <div className="sk-chase-dot"></div>
+              <div className="sk-chase-dot"></div>
+              <div className="sk-chase-dot"></div>
+              <div className="sk-chase-dot"></div>
+            </div>
           </div>
+          {this.state.model ? (
+            <MagicDropzone
+              className="Dropzone"
+              accept="image/jpeg, image/png, .jpg, .jpeg, .png"
+              multiple={false}
+              onDrop={this.onDrop}
+            >
+              {this.state.preview ? (
+                <img
+                  alt="画像を表示します..."
+                  onLoad={this.onImageChange}
+                  className="Dropzone-img"
+                  src={this.state.preview}
+                  crossOrigin="anonymous"
+                />
+              ) : (
+                "ここをクリックしてファイルを選択するか、ファイルをドロップしてください"
+              )}
+              <canvas id="canvas" width="640" height="640" />
+            </MagicDropzone>
+          ) : (
+            <div className="Dropzone">モデルを読み込んでいます...</div>
+          )}
         </div>
-        {this.state.model ? (
-          <MagicDropzone
-            className="Dropzone"
-            accept="image/jpeg, image/png, .jpg, .jpeg, .png"
-            multiple={false}
-            onDrop={this.onDrop}
-          >
-            {this.state.preview ? (
-              <img
-                alt="画像を表示します..."
-                onLoad={this.onImageChange}
-                className="Dropzone-img"
-                src={this.state.preview}
-                crossOrigin="anonymous"
-              />
-            ) : (
-              "ここをクリックしてファイルを選択するか、ファイルをドロップしてください"
-            )}
-            <canvas id="canvas" width="640" height="640" />
-          </MagicDropzone>
-        ) : (
-          <div className="Dropzone">モデルを読み込んでいます...</div>
-        )}
+        <p><a href="https://dev.every-little.com/">メニューに戻る</a></p>
       </div>
     );
   }
