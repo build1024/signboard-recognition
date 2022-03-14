@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/tfjs-yolov5-example/static/css/main.e9ee4296.css",
-    "main.js": "/tfjs-yolov5-example/static/js/main.aaa5a27e.js",
-    "index.html": "/tfjs-yolov5-example/index.html",
-    "main.e9ee4296.css.map": "/tfjs-yolov5-example/static/css/main.e9ee4296.css.map",
-    "main.aaa5a27e.js.map": "/tfjs-yolov5-example/static/js/main.aaa5a27e.js.map"
+    "main.css": "/signboard-recognition/static/css/main.1734e976.css",
+    "main.js": "/signboard-recognition/static/js/main.5f1ef7a5.js",
+    "index.html": "/signboard-recognition/index.html",
+    "main.1734e976.css.map": "/signboard-recognition/static/css/main.1734e976.css.map",
+    "main.5f1ef7a5.js.map": "/signboard-recognition/static/js/main.5f1ef7a5.js.map"
   },
   "entrypoints": [
-    "static/css/main.e9ee4296.css",
-    "static/js/main.aaa5a27e.js"
+    "static/css/main.1734e976.css",
+    "static/js/main.5f1ef7a5.js"
   ]
 }
